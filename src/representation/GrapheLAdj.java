@@ -17,7 +17,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	
     public GrapheLAdj(String s) {
     	this();
-    	graphe.IGraphe.super.peupler(s);
+    	peupler(s);
     }
     
 	@Override
@@ -126,6 +126,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 		for (String sommet: sommetTries) {
 			List <Arc> arcTries = new ArrayList<Arc>(ladj.get(sommet));
 			Collections.sort(arcTries);
+			
 			for (Arc arc: arcTries) {
 				if (premier) {
 					s += arc.toString();
@@ -135,6 +136,16 @@ public class GrapheLAdj implements graphe.IGraphe {
 					s += ", " + arc.toString(); 
 				}
 			}
+			
+			if(arcTries.isEmpty()) {
+				if (premier) {
+					s += "sommet" + ":";
+				}
+				else{
+					s += ", " + sommet + ":";
+				}
+			}
+			
 		}
 		return s;
 	}
