@@ -16,7 +16,7 @@ public class GrapheLArcs implements graphe.IGraphe {
     
     public GrapheLArcs(String s) {
     	this();
-    	graphe.IGraphe.super.peupler(s);
+    	peupler(s);
     }
     
 	@Override
@@ -25,9 +25,6 @@ public class GrapheLArcs implements graphe.IGraphe {
 		for (Arc arc: arcs) {
 			if (!sommets.contains(arc.getSource())) {
 				sommets.add(arc.getSource());
-			}
-			if (!sommets.contains(arc.getDestination())) {
-				sommets.add(arc.getDestination());
 			}
 		}
 		return sommets;
@@ -80,10 +77,10 @@ public class GrapheLArcs implements graphe.IGraphe {
 		}
 	}
 
-	private boolean Destination(String sommet) {
+	private boolean noDestination(String sommet) {
 		assert(contientSommet(sommet));
 		for (Arc arc: arcs) {
-			if (arc.getSource().equals(sommet) && arc.getDestination() != "") {
+			if (arc.getSource().equals(sommet) && arc.getDestination() == "") {
 				return true;
 			}
 		}
@@ -98,13 +95,16 @@ public class GrapheLArcs implements graphe.IGraphe {
 		if (valeur < 0) {
 			throw new IllegalArgumentException("valuation negative");
 		}
-		if (!Destination(source)) {
-			oterSommet(source);
-		}
-		if (!Destination(destination)) {
-			oterSommet(source);
+		if(contientSommet(source) && noDestination(source)) {
+			oterArc(source, "");
 		}
 		arcs.add(new Arc(source, destination, valeur));
+	}
+	
+	private void supprimer(List<Arc> supprArc) {
+		for (Arc arc: supprArc) {
+			arcs.remove(arc);
+		}
 	}
 
 	@Override
@@ -112,11 +112,17 @@ public class GrapheLArcs implements graphe.IGraphe {
 		if (!contientSommet(noeud)) {
 			return;
 		}
+		List<Arc> supprArc = new ArrayList<Arc>();
 		for (Arc arc: arcs) {
 			if (arc.getSource().equals(noeud) || arc.getDestination().equals(noeud)) {
-				arcs.remove(arc);
+				supprArc.add(arc);
 			}
 		}
+		supprimer(supprArc);
+	}
+	
+	private void supprimer(Arc arc) {
+		arcs.remove(arc);
 	}
 
 	@Override
@@ -124,11 +130,14 @@ public class GrapheLArcs implements graphe.IGraphe {
 		if (!contientArc(source, destination)) {
 			throw new IllegalArgumentException("arc non present");
 		}
+		Arc supprArc = null;
 		for (Arc arc: arcs) {
 			if (arc.getSource().equals(source) && arc.getDestination().equals(destination)) {
-				arcs.remove(arc);
+				supprArc = arc;
+				break;
 			}
 		}
+		supprimer(supprArc);
 	}
 	
 	public String toString() {
