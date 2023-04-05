@@ -1,6 +1,5 @@
 package Arc;
 
-
 public class Arc implements Comparable<Arc>{
     private String source;
     private String destination;
@@ -46,6 +45,9 @@ public class Arc implements Comparable<Arc>{
 
 	@Override
 	public int compareTo(Arc o) {
+		if (source.equals(o.getSource())) {
+			return destination.compareTo(o.destination);
+		}
 		return source.compareTo(o.getSource());
 	}
     
