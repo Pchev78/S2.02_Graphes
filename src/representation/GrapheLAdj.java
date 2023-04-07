@@ -51,7 +51,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 
 	@Override
 	public boolean contientSommet(String sommet) {
-		return ladj.containsKey(sommet);
+		return getSommets().contains(sommet);
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 			return;
 		}
 		ladj.remove(noeud);
-		for (String sommet : ladj.keySet()) {
+		for (String sommet : getSommets()) {
 			for (Arc arc: ladj.get(sommet)) {
 				if (arc.getDestination().equals(noeud)) {
 					ladj.get(sommet).remove(arc);
@@ -117,13 +117,13 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	public String toString() {
-		List <String> sommetTries= new ArrayList<String>(ladj.keySet());
-		Collections.sort(sommetTries);
+		List <String> sommetsTries= new ArrayList<String>(ladj.keySet());
+		Collections.sort(sommetsTries);
 		
 		boolean premier = true;
 		String s = "";
 		
-		for (String sommet: sommetTries) {
+		for (String sommet: sommetsTries) {
 			List <Arc> arcTries = new ArrayList<Arc>(ladj.get(sommet));
 			Collections.sort(arcTries);
 			
@@ -140,6 +140,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 			if(arcTries.isEmpty()) {
 				if (premier) {
 					s += "sommet" + ":";
+					premier = false;
 				}
 				else{
 					s += ", " + sommet + ":";
