@@ -101,28 +101,19 @@ public class GrapheLArcs implements graphe.IGraphe {
 		arcs.add(new Arc(source, destination, valeur));
 	}
 	
-	private void supprimer(List<Arc> supprArc) {
-		for (Arc arc: supprArc) {
-			arcs.remove(arc);
-		}
-	}
-
 	@Override
 	public void oterSommet(String noeud) {
 		if (!contientSommet(noeud)) {
 			return;
 		}
+		
 		List<Arc> supprArc = new ArrayList<Arc>();
 		for (Arc arc: arcs) {
 			if (arc.getSource().equals(noeud) || arc.getDestination().equals(noeud)) {
 				supprArc.add(arc);
 			}
 		}
-		supprimer(supprArc);
-	}
-	
-	private void supprimer(Arc arc) {
-		arcs.remove(arc);
+		arcs.removeAll(supprArc);
 	}
 
 	@Override
@@ -137,7 +128,7 @@ public class GrapheLArcs implements graphe.IGraphe {
 				break;
 			}
 		}
-		supprimer(supprArc);
+		arcs.remove(supprArc);
 	}
 	
 	public String toString() {
