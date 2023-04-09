@@ -59,20 +59,15 @@ public class GrapheLArcs implements graphe.IGraphe {
 
 	@Override
 	public boolean contientArc(String src, String dest) {
-		for (Arc arc: arcs) {
-			if (arc.getSource().equals(src) && arc.getDestination().equals(dest)) {
-				return true;
-			}
+		if (contientSommet(src)) {
+			return getSucc(src).contains(dest);
 		}
 		return false;
 	}
 
 	@Override
 	public void ajouterSommet(String noeud) {
-		if (contientSommet(noeud)) {
-			return;
-		}
-		else {
+		if (!contientSommet(noeud)) {
 			arcs.add(new Arc(noeud));
 		}
 	}
@@ -90,7 +85,7 @@ public class GrapheLArcs implements graphe.IGraphe {
 	@Override
 	public void ajouterArc(String source, String destination, Integer valeur) {
 		if (contientArc(source, destination)) {
-			throw new IllegalArgumentException("arc déja present");
+			throw new IllegalArgumentException("arc deja present");
 		}
 		if (valeur < 0) {
 			throw new IllegalArgumentException("valuation negative");
