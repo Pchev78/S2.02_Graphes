@@ -57,21 +57,14 @@ public class GrapheLAdj implements graphe.IGraphe {
 	@Override
 	public boolean contientArc(String src, String dest) {
 		if (contientSommet(src)) {
-			for (Arc arc: ladj.get(src)) {
-				if (arc.getDestination().equals(dest)){
-					return true;
-				}
-			}
+			return getSucc(src).contains(dest);
 		}
 		return false;
 	}
 
 	@Override
 	public void ajouterSommet(String noeud) {
-		if (contientSommet(noeud)) {
-			return;
-		}
-		else {
+		if (!contientSommet(noeud)) {
 			ladj.put(noeud, new ArrayList<Arc>());
 		}
 	}
@@ -79,7 +72,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	@Override
 	public void ajouterArc(String source, String destination, Integer valeur) {
 		if (contientArc(source, destination)) {
-			throw new IllegalArgumentException("arc déja present");
+			throw new IllegalArgumentException("arc deja present");
 		}
 		if (valeur < 0) {
 			throw new IllegalArgumentException("valuation negative");
