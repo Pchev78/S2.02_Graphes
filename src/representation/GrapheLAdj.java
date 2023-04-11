@@ -19,14 +19,14 @@ public class GrapheLAdj implements graphe.IGraphe {
 	private Map<String, List<Arc>> ladj; // Liste d'adjacence
 
 	/**
-	 * @brief Constructeur qui initialise un graphe représenté via une liste d'adjacence
+	 * Constructeur qui initialise un graphe représenté via une liste d'adjacence
 	 */
 	public GrapheLAdj() {
 		ladj = new HashMap<String, List<Arc>>();
 	}
 
 	/**
-	 * @brief Constructeur qui initialise un graphe à partir d'une chaîne
+	 * Constructeur qui initialise un graphe à partir d'une chaîne
 	 * @param s : chaîne indiquant les arcs du graphe
 	 */
     public GrapheLAdj(String s) {
@@ -35,7 +35,7 @@ public class GrapheLAdj implements graphe.IGraphe {
     }
 
 	/**
-	 * @brief Renvoie tous les sommets du graphe
+	 * Renvoie tous les sommets du graphe
 	 * @return liste de tous les sommets
 	 */
 	@Override
@@ -48,7 +48,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Renvoie tous les successeurs d'un sommet
+	 * Renvoie tous les successeurs d'un sommet
 	 * @param sommet : sommet dont on veut connaître les successeurs
 	 * @return liste des successeurs du sommet
 	 */
@@ -62,7 +62,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
+	 * Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
 	 * @param src : sommet source
 	 * @param dest : sommet destination
 	 * @return la valuation entre les deux sommets
@@ -79,7 +79,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Renvoie un booléen indiquant si le graphe contient un sommet ou non
+	 * Renvoie un booléen indiquant si le graphe contient un sommet ou non
 	 * @param sommet : sommet que l'on veut vérifier
 	 * @return true si le sommet existe dans le graphe, false sinon
 	 */
@@ -89,7 +89,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Renvoie un booléen indiquant si le graphe contient un arc ou non
+	 * Renvoie un booléen indiquant si le graphe contient un arc ou non
 	 * @param src : sommet source
 	 * @param dest : sommet destination
 	 * @return true si un arc existe entre les deux sommets, false sinon
@@ -103,7 +103,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Ajoute un sommet au graphe si non déja présent
+	 * Ajoute un sommet au graphe si non déja présent
 	 * @param noeud : sommet à ajouter
 	 */
 	@Override
@@ -114,7 +114,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Ajoute un arc entre deux sommets, avec pour valuation une valeur donnée
+	 * Ajoute un arc entre deux sommets, avec pour valuation une valeur donnée
 	 * @pre il ne faut pas que l'arc soit déjà présent
 	 * @pre il ne faut pas que la valeur donnée en paramètre soit négative
 	 * @param source : sommet duquel part l'arc
@@ -135,7 +135,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Permet d'enlever un sommet du graphe si présent dans ce dernier
+	 * Permet d'enlever un sommet du graphe si présent dans ce dernier
 	 * @param noeud : sommet à supprimer
 	 */
 	@Override
@@ -154,7 +154,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Permet d'enlever un arc entre deux sommets
+	 * Permet d'enlever un arc entre deux sommets
 	 * @pre il faut que l'arc existe déjà
 	 * @param source : sommet duquel part l'arc
 	 * @param destination : sommet vers lequel va l'arc
@@ -172,9 +172,10 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Renvoie une chaîne représentant le graphe
+	 * Renvoie une chaîne représentant le graphe
 	 * @return chaîne représentant le graphe
 	 */
+	@Override
 	public String toString() {
 		List <String> sommetsTries= new ArrayList<String>(ladj.keySet());
 		Collections.sort(sommetsTries);
