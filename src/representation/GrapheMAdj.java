@@ -254,6 +254,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	 * Renvoie une chaîne représentant le graphe
 	 * @return chaîne représentant le graphe
 	 */
+	@Override
 	public String toString() {
 		String s = "";
 		boolean premier = true;
