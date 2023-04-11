@@ -1,24 +1,33 @@
 package representation;
 
+/**
+ * Classe représentant un graphe sous forme d'une matrice d'adjacence
+ * @author MOGNE Youssouf-A., CHEVILY Pierre, BALASSOUPRAMANIEN Madavan, BANOL MORENO Marcell 101
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** Type de donnée représentant un graphe sous forme d'une matrice d'adjacence*/
 public class GrapheMAdj implements graphe.IGraphe{
-	private int[][] matrice;
+	private int[][] matrice; 
 	private Map<String, Integer> indices;
 	
-	private final int NON_VALUATION = -1; // Valeur pour laquelle une valuation ne sera pas considérée
+	private final int NON_VALUATION = -1; 
 	
+	/**
+	 * @brief Constructeur qui initialise un graphe représenté via une matrice d'adjacence
+	 */
 	public GrapheMAdj() {
 		indices = new HashMap<String, Integer>();
 	}
 
 	/**
-	 * @brief 2ᵉ constructeur de la classe GrapheMAdj2, en supposant qu'on nous fournisse des arcs
-	 * @param s : chaîne contenant les arcs fournis
+	 * @brief Constructeur qui initialise un graphe à partir d'une chaîne
+	 * @param s : chaîne indiquant les arcs du graphe
 	 */
 	public GrapheMAdj(String s) {
 		this();
@@ -26,8 +35,8 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Getter des sommets
-	 * @return tous les sommets de la matrice
+	 * @brief Renvoie tous les sommets du graphe
+	 * @return liste de tous les sommets
 	 */
 	@Override
 	public List<String> getSommets() {
@@ -39,9 +48,9 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet d'avoir tous les successeurs d'un sommet
+	 * @brief Renvoie tous les successeurs d'un sommet
 	 * @param sommet : sommet dont on veut connaître les successeurs
-	 * @return les successeurs du sommet
+	 * @return liste des successeurs du sommet
 	 */
 	@Override
 	public List<String> getSucc(String sommet) {
@@ -55,7 +64,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet d'avoir l'indice d'un sommet dans la matrice
+	 * @brief Renvoie l'indice d'un sommet dans la matrice
 	 * @pre On vérifie que le sommet existe dans la matrice
 	 * @param sommet : sommet dont on veut l'indice
 	 * @return l'indice du sommet
@@ -66,10 +75,10 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet de donner la valuation entre 2 sommets
+	 * @brief Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
 	 * @param src : sommet source
 	 * @param dest : sommet destination
-	 * @return la valuation entre les 2 sommets
+	 * @return la valuation entre les deux sommets
 	 */
 	@Override
 	public int getValuation(String src, String dest) {
@@ -78,8 +87,9 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
+	 * @brief Renvoie un booléen indiquant si le graphe contient un sommet ou non
 	 * @param sommet : sommet que l'on veut vérifier
-	 * @return true si le sommet existe dans la matrice, false sinon
+	 * @return true si le sommet existe dans le graphe, false sinon
 	 */
 	@Override
 	public boolean contientSommet(String sommet) {
@@ -87,9 +97,10 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
+	 * @brief Renvoie un booléen indiquant si le graphe contient un arc ou non
 	 * @param src : sommet source
 	 * @param dest : sommet destination
-	 * @return true si un arc existe entre les 2 sommets, false sinon
+	 * @return true si un arc existe entre les deux sommets, false sinon
 	 */
 	@Override
 	public boolean contientArc(String src, String dest) {
@@ -100,15 +111,16 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @return le nombre de sommets de la matrice
+	 * @brief Renvoie le nombre de nombre de sommets du graphe
+	 * @return le nombre de sommets
 	 */
 	private int nbSommets() {
 		return getSommets().size();
 	}
 
 	/**
-	 * @brief Agrandit une matrice de la taille nbSommets à la taille nbSommets + 1
-	 * @return la matrice agrandie
+	 * @brief Renvoie une nouvelle matrice copiant et agrandissant de 1 la précédente
+	 * @return la nouvelle matrice
 	 */
 	private int[][] agrandirMatrice() {
 		int [][] nvMat= new int[nbSommets()+1][nbSommets()+1] ;
@@ -122,7 +134,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet de mettre les cases relatives à un nouveau sommet à NON_VALUATION
+	 * @brief Initialise les cases relatives à un nouveau sommet à NON_VALUATION dans la matrice
 	 * @see ajouterSommet pour son utilisation
 	 * @param indMax : l'indice du nouveau sommet
 	 */
@@ -136,7 +148,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Ajoute un sommet à la matrice
+	 * @brief Ajoute un sommet au graphe si non déja présent
 	 * @param noeud : sommet à ajouter
 	 */
 	@Override
@@ -149,7 +161,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Ajoute un arc entre 2 sommets, avec pour valuation une valeur donnée
+	 * @brief Ajoute un arc entre deux sommets, avec pour valuation une valeur donnée
 	 * @pre il ne faut pas que l'arc soit déjà présent
 	 * @pre il ne faut pas que la valeur donnée en paramètre soit négative
 	 * @param source : sommet duquel part l'arc
@@ -170,9 +182,9 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet de créer une nouvelle Map avec de nouveaux indices,
-	 * du fait de la suppression d'un sommet de la matrice
-	 * @param sommetSuppr : sommet supprimé de la matrice
+	 * @brief Renvoie une nouvelle Map avec les nouveaux indices pour chaque sommet,
+	 * du fait de la suppression d'un sommet
+	 * @param sommetSuppr : sommet supprimé 
 	 * @return la nouvelle Map contenant les nouveaux indices
 	 */
 	private Map<String, Integer> nouveauxIndices(String sommetSuppr) {
@@ -191,8 +203,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet de rétrécir la taille d'une matrice,
-	 * passant de nbSommets à nbSommets - 1
+	 * @brief Renvoie une nouvelle matrice rétrécissant la précédente de 1
 	 * @param noeudSuppr : sommet supprimé de la matrice
 	 * @return la nouvelle matrice
 	 */
@@ -213,8 +224,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet d'enlever un sommet d'une matrice
-	 * @pre le sommet doit déjà exister dans la matrice
+	 * @brief Permet d'enlever un sommet du graphe si présent dans ce dernier
 	 * @param noeud : sommet à supprimer
 	 */
 	@Override
@@ -227,7 +237,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet d'enlever un arc entre 2 sommets
+	 * @brief Permet d'enlever un arc entre deux sommets
 	 * @pre il faut que l'arc existe déjà
 	 * @param source : sommet duquel part l'arc
 	 * @param destination : sommet vers lequel va l'arc
@@ -241,7 +251,8 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @return la matrice sous forme de String
+	 * @brief Renvoie une chaîne représentant le graphe
+	 * @return chaîne représentant le graphe
 	 */
 	public String toString() {
 		String s = "";
