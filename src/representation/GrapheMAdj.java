@@ -19,14 +19,14 @@ public class GrapheMAdj implements graphe.IGraphe{
 	private final int NON_VALUATION = -1; 
 	
 	/**
-	 * @brief Constructeur qui initialise un graphe représenté via une matrice d'adjacence
+	 * Constructeur qui initialise un graphe représenté via une matrice d'adjacence
 	 */
 	public GrapheMAdj() {
 		indices = new HashMap<String, Integer>();
 	}
 
 	/**
-	 * @brief Constructeur qui initialise un graphe à partir d'une chaîne
+	 * Constructeur qui initialise un graphe à partir d'une chaîne
 	 * @param s : chaîne indiquant les arcs du graphe
 	 */
 	public GrapheMAdj(String s) {
@@ -35,7 +35,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie tous les sommets du graphe
+	 * Renvoie tous les sommets du graphe
 	 * @return liste de tous les sommets
 	 */
 	@Override
@@ -48,7 +48,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie tous les successeurs d'un sommet
+	 * Renvoie tous les successeurs d'un sommet
 	 * @param sommet : sommet dont on veut connaître les successeurs
 	 * @return liste des successeurs du sommet
 	 */
@@ -64,7 +64,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie l'indice d'un sommet dans la matrice
+	 * Renvoie l'indice d'un sommet dans la matrice
 	 * @pre On vérifie que le sommet existe dans la matrice
 	 * @param sommet : sommet dont on veut l'indice
 	 * @return l'indice du sommet
@@ -75,7 +75,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
+	 * Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
 	 * @param src : sommet source
 	 * @param dest : sommet destination
 	 * @return la valuation entre les deux sommets
@@ -87,7 +87,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie un booléen indiquant si le graphe contient un sommet ou non
+	 * Renvoie un booléen indiquant si le graphe contient un sommet ou non
 	 * @param sommet : sommet que l'on veut vérifier
 	 * @return true si le sommet existe dans le graphe, false sinon
 	 */
@@ -97,7 +97,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie un booléen indiquant si le graphe contient un arc ou non
+	 * Renvoie un booléen indiquant si le graphe contient un arc ou non
 	 * @param src : sommet source
 	 * @param dest : sommet destination
 	 * @return true si un arc existe entre les deux sommets, false sinon
@@ -111,7 +111,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie le nombre de nombre de sommets du graphe
+	 * Renvoie le nombre de nombre de sommets du graphe
 	 * @return le nombre de sommets
 	 */
 	private int nbSommets() {
@@ -119,7 +119,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie une nouvelle matrice copiant et agrandissant de 1 la précédente
+	 * Renvoie une nouvelle matrice copiant et agrandissant de 1 la précédente
 	 * @return la nouvelle matrice
 	 */
 	private int[][] agrandirMatrice() {
@@ -134,7 +134,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Initialise les cases relatives à un nouveau sommet à NON_VALUATION dans la matrice
+	 * Initialise les cases relatives à un nouveau sommet à NON_VALUATION dans la matrice
 	 * @see ajouterSommet pour son utilisation
 	 * @param indMax : l'indice du nouveau sommet
 	 */
@@ -148,7 +148,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Ajoute un sommet au graphe si non déja présent
+	 * Ajoute un sommet au graphe si non déja présent
 	 * @param noeud : sommet à ajouter
 	 */
 	@Override
@@ -161,7 +161,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Ajoute un arc entre deux sommets, avec pour valuation une valeur donnée
+	 * Ajoute un arc entre deux sommets, avec pour valuation une valeur donnée
 	 * @pre il ne faut pas que l'arc soit déjà présent
 	 * @pre il ne faut pas que la valeur donnée en paramètre soit négative
 	 * @param source : sommet duquel part l'arc
@@ -182,7 +182,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie une nouvelle Map avec les nouveaux indices pour chaque sommet,
+	 * Renvoie une nouvelle Map avec les nouveaux indices pour chaque sommet,
 	 * du fait de la suppression d'un sommet
 	 * @param sommetSuppr : sommet supprimé 
 	 * @return la nouvelle Map contenant les nouveaux indices
@@ -203,7 +203,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie une nouvelle matrice rétrécissant la précédente de 1
+	 * Renvoie une nouvelle matrice rétrécissant la précédente de 1
 	 * @param noeudSuppr : sommet supprimé de la matrice
 	 * @return la nouvelle matrice
 	 */
@@ -224,7 +224,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet d'enlever un sommet du graphe si présent dans ce dernier
+	 * Permet d'enlever un sommet du graphe si présent dans ce dernier
 	 * @param noeud : sommet à supprimer
 	 */
 	@Override
@@ -237,7 +237,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Permet d'enlever un arc entre deux sommets
+	 * Permet d'enlever un arc entre deux sommets
 	 * @pre il faut que l'arc existe déjà
 	 * @param source : sommet duquel part l'arc
 	 * @param destination : sommet vers lequel va l'arc
@@ -251,7 +251,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * @brief Renvoie une chaîne représentant le graphe
+	 * Renvoie une chaîne représentant le graphe
 	 * @return chaîne représentant le graphe
 	 */
 	public String toString() {
