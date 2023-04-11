@@ -1,5 +1,10 @@
 package representation;
 
+/**
+ * Classe représentant un graphe sous forme d'une liste d'adjacence
+ * @author MOGNE Youssouf-A., CHEVILY Pierre, BALASSOUPRAMANIEN Madavan, BANOL MORENO Marcell 101
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,16 +13,21 @@ import java.util.Map;
 
 import Arc.Arc;
 
+
+/** Type de donnée représentant un graphe sous forme d'une liste d'adjacence*/
 public class GrapheLAdj implements graphe.IGraphe {
 	private Map<String, List<Arc>> ladj; // Liste d'adjacence
 
+	/**
+	 * @brief Constructeur qui initialise un graphe représenté via une liste d'adjacence
+	 */
 	public GrapheLAdj() {
 		ladj = new HashMap<String, List<Arc>>();
 	}
 
 	/**
-	 * @brief 2ᵉ constructeur de la classe GrapheMAdj2, en supposant qu'on nous fournisse des arcs
-	 * @param s : chaîne contenant les arcs fournis
+	 * @brief Constructeur qui initialise un graphe à partir d'une chaîne
+	 * @param s : chaîne indiquant les arcs du graphe
 	 */
     public GrapheLAdj(String s) {
     	this();
@@ -25,8 +35,8 @@ public class GrapheLAdj implements graphe.IGraphe {
     }
 
 	/**
-	 * @brief Getter des sommets
-	 * @return tous les sommets de la liste d'adjacence des arcs
+	 * @brief Renvoie tous les sommets du graphe
+	 * @return liste de tous les sommets
 	 */
 	@Override
 	public List<String> getSommets() {
@@ -38,9 +48,9 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Permet d'avoir tous les successeurs d'un sommet
+	 * @brief Renvoie tous les successeurs d'un sommet
 	 * @param sommet : sommet dont on veut connaître les successeurs
-	 * @return les successeurs du sommet
+	 * @return liste des successeurs du sommet
 	 */
 	@Override
 	public List<String> getSucc(String sommet) {
@@ -52,10 +62,10 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Permet de donner la valuation entre 2 sommets
+	 * @brief Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
 	 * @param src : sommet source
 	 * @param dest : sommet destination
-	 * @return la valuation entre les 2 sommets
+	 * @return la valuation entre les deux sommets
 	 */
 	@Override
 	public int getValuation(String src, String dest) {
@@ -69,8 +79,9 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
+	 * @brief Renvoie un booléen indiquant si le graphe contient un sommet ou non
 	 * @param sommet : sommet que l'on veut vérifier
-	 * @return true si le sommet existe dans la liste, false sinon
+	 * @return true si le sommet existe dans le graphe, false sinon
 	 */
 	@Override
 	public boolean contientSommet(String sommet) {
@@ -78,9 +89,10 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
+	 * @brief Renvoie un booléen indiquant si le graphe contient un arc ou non
 	 * @param src : sommet source
 	 * @param dest : sommet destination
-	 * @return true si un arc existe entre les 2 sommets, false sinon
+	 * @return true si un arc existe entre les deux sommets, false sinon
 	 */
 	@Override
 	public boolean contientArc(String src, String dest) {
@@ -91,7 +103,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Ajoute un sommet à la liste d'adjacence des arcs
+	 * @brief Ajoute un sommet au graphe si non déja présent
 	 * @param noeud : sommet à ajouter
 	 */
 	@Override
@@ -102,7 +114,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Ajoute un arc entre 2 sommets, avec pour valuation une valeur donnée
+	 * @brief Ajoute un arc entre deux sommets, avec pour valuation une valeur donnée
 	 * @pre il ne faut pas que l'arc soit déjà présent
 	 * @pre il ne faut pas que la valeur donnée en paramètre soit négative
 	 * @param source : sommet duquel part l'arc
@@ -123,8 +135,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Permet d'enlever un sommet de la liste d'adjacence des arcs
-	 * @pre le sommet donné en paramètre doit déjà exister dans la liste d'adjacence des arcs
+	 * @brief Permet d'enlever un sommet du graphe si présent dans ce dernier
 	 * @param noeud : sommet à supprimer
 	 */
 	@Override
@@ -143,7 +154,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @brief Permet d'enlever un arc entre 2 sommets
+	 * @brief Permet d'enlever un arc entre deux sommets
 	 * @pre il faut que l'arc existe déjà
 	 * @param source : sommet duquel part l'arc
 	 * @param destination : sommet vers lequel va l'arc
@@ -161,7 +172,8 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * @return la liste d'adjacence des arcs sous forme de String
+	 * @brief Renvoie une chaîne représentant le graphe
+	 * @return chaîne représentant le graphe
 	 */
 	public String toString() {
 		List <String> sommetsTries= new ArrayList<String>(ladj.keySet());
