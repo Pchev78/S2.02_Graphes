@@ -13,7 +13,11 @@ import Arc.Arc;
 
 /** Type de donnée représentant un graphe sous forme d'une liste d'arcs*/
 public class GrapheLArcs implements graphe.IGraphe {
-    private List<Arc> arcs; //// Liste d'arcs
+	/**Liste d'arcs**/
+    private List<Arc> arcs;
+    
+    /**Constante correspondant à une non valuation*/
+    private final int NON_VALUATION = -1; 
     
     /**
 	 * Constructeur qui initialise un graphe représenté via une liste d'arcs
@@ -66,7 +70,8 @@ public class GrapheLArcs implements graphe.IGraphe {
 	}
 
 	/**
-	 * Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
+	 * Renvoie la valuation entre deux sommets, NON_VALUATION s'il n'existe pas d'arc entre les deux sommets
+	 * @pre il faut que le graphe contienne les deux sommets
 	 * @param src : sommet source
 	 * @param dest : sommet destination
 	 * @return la valuation entre les deux sommets
@@ -79,7 +84,7 @@ public class GrapheLArcs implements graphe.IGraphe {
 				return arc.getValuation();
 			}
 		}
-		return -1;
+		return NON_VALUATION;
 	}
 
 	
