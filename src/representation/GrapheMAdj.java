@@ -6,16 +6,18 @@ package representation;
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /** Type de donnée représentant un graphe sous forme d'une matrice d'adjacence*/
 public class GrapheMAdj implements graphe.IGraphe{
+	/**Matrice d'adjacence*/
 	private int[][] matrice; 
+	/**Dictionnaire des indices des sommets*/
 	private Map<String, Integer> indices;
 	
+	/**Constante correspondant à une non valuation*/
 	private final int NON_VALUATION = -1; 
 	
 	/**
@@ -76,6 +78,7 @@ public class GrapheMAdj implements graphe.IGraphe{
 
 	/**
 	 * Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
+	 * @pre il faut que le graphe contienne les deux sommets
 	 * @param src : sommet source
 	 * @param dest : sommet destination
 	 * @return la valuation entre les deux sommets
@@ -256,35 +259,6 @@ public class GrapheMAdj implements graphe.IGraphe{
 	 */
 	@Override
 	public String toString() {
-		String s = "";
-		boolean premier = true;
-		
-		List<String> sommetsTries = new ArrayList<String>(getSommets());
-		Collections.sort(sommetsTries);
-		
-		for(String src : sommetsTries) {
-			List<String> succTries = new ArrayList<String>(getSucc(src));
-			Collections.sort(succTries);
-			
-			for (String dst : succTries) {
-				if (premier) {
-					s += src + "-" + dst + "(" + getValuation(src, dst) + ")";
-					premier = false;
-				}
-				else {
-					s += ", " + src + "-" + dst + "(" + getValuation(src, dst) + ")";
-				}
-			}
-			if (succTries.isEmpty()) {
-				if (premier) {
-					s += src + ":";
-					premier = false;
-				}
-				else {
-					s += ", " + src + ":";
-				}
-			}
-		}
-		return s;
+		return toAString();
 	}
 }
