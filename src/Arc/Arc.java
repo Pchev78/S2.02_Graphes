@@ -7,8 +7,11 @@ package Arc;
 
 /** Type de donnée représentant un arc*/
 public class Arc implements Comparable<Arc>{
+	/**Noeud source*/
     private String source;
+    /**Noeud destination*/
     private String destination;
+    /**Valuation de l'arc**/
     private int valuation;
     
     /**
