@@ -6,7 +6,6 @@ package representation;
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,11 @@ import Arc.Arc;
 
 /** Type de donnée représentant un graphe sous forme d'une liste d'adjacence*/
 public class GrapheLAdj implements graphe.IGraphe {
-	private Map<String, List<Arc>> ladj; // Liste d'adjacence
+	/**Liste d'adjacence**/
+	private Map<String, List<Arc>> ladj; 
+	
+	/**Constante correspondant à une non valuation*/
+	private final int NON_VALUATION = -1;
 
 	/**
 	 * Constructeur qui initialise un graphe représenté via une liste d'adjacence
@@ -62,7 +65,8 @@ public class GrapheLAdj implements graphe.IGraphe {
 	}
 
 	/**
-	 * Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
+	 * Renvoie la valuation entre deux sommets, NON_VALUATION s'il n'existe pas d'arc entre les deux sommets
+	 * @pre il faut que le graphe contienne les deux sommets
 	 * @param src : sommet source
 	 * @param dest : sommet destination
 	 * @return la valuation entre les deux sommets
@@ -75,7 +79,7 @@ public class GrapheLAdj implements graphe.IGraphe {
 				return arc.getValuation();
 			}
 		}
-		return -1;
+		return NON_VALUATION;
 	}
 
 	/**
@@ -177,38 +181,6 @@ public class GrapheLAdj implements graphe.IGraphe {
 	 */
 	@Override
 	public String toString() {
-		List <String> sommetsTries= new ArrayList<String>(ladj.keySet());
-		Collections.sort(sommetsTries);
-		
-		boolean premier = true;
-		String s = "";
-		
-		for (String sommet: sommetsTries) {
-			List <Arc> arcTries = new ArrayList<Arc>(ladj.get(sommet));
-			Collections.sort(arcTries);
-			
-			for (Arc arc: arcTries) {
-				if (premier) {
-					s += arc.toString();
-					premier = false;
-				}
-				else {
-					s += ", " + arc.toString(); 
-				}
-			}
-			
-			if(arcTries.isEmpty()) {
-				if (premier) {
-					s += "sommet" + ":";
-					premier = false;
-				}
-				else{
-					s += ", " + sommet + ":";
-				}
-			}
-			
-		}
-		return s;
+		return toAString();
 	}
-	
 }
