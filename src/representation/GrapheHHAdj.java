@@ -6,14 +6,17 @@ package representation;
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /** Type de donnée représentant un graphe sous forme d'une table de hachage*/
 public class GrapheHHAdj implements graphe.IGraphe{
-	private Map<String, Map<String, Integer>> hhadj; // Table de hachage
+	/**Table d'hachage**/
+	private Map<String, Map<String, Integer>> hhadj;
+	
+	/**Constante correspondant à une non valuation*/
+	private final int NON_VALUATION = -1;
 	
 	/**
 	 * Constructeur qui initialise un graphe représenté via une table de hachage
@@ -59,7 +62,8 @@ public class GrapheHHAdj implements graphe.IGraphe{
 	}
 
 	/**
-	 * Renvoie la valuation entre deux sommets, -1 s'il n'existe pas d'arc entre les deux sommets
+	 * Renvoie la valuation entre deux sommets, NON_VALUATION s'il n'existe pas d'arc entre les deux sommets
+	 * @pre il faut que le graphe contienne les deux sommets
 	 * @param src : sommet source
 	 * @param dest : sommet destination
 	 * @return la valuation entre les deux sommets
@@ -70,7 +74,7 @@ public class GrapheHHAdj implements graphe.IGraphe{
 		if (contientArc(src, dest)) {
 			return hhadj.get(src).get(dest);
 		}
-		return -1;
+		return NON_VALUATION;
 	}
 
 	/**
@@ -167,37 +171,6 @@ public class GrapheHHAdj implements graphe.IGraphe{
 	 */
 	@Override
 	public String toString() {
-		List<String> sommetsTries = new ArrayList<String>(getSommets());
-		Collections.sort(sommetsTries);
-		
-		boolean premier = true;
-		String s = "";
-		
-		for (String sommet: sommetsTries) {
-			List <String> destTries = new ArrayList<String>(getSucc(sommet));
-			Collections.sort(destTries);
-			
-			for (String dest : destTries) {
-				if (premier) {
-					s += sommet + "-" + dest + "(" + getValuation(sommet, dest) + ")";
-					premier = false;
-				}
-				else {
-					s += ", " + sommet + "-" + dest + "(" + getValuation(sommet, dest) + ")";
-				}
-			}
-			
-			if (destTries.isEmpty()) {
-				if (premier) {
-					s += sommet + ":";
-					premier = false;
-				}
-				else {
-					s += ", " + sommet + ":";
-				}
-			}
-			
-		}
-		return s;
+		return toAString();
 	}
 }
