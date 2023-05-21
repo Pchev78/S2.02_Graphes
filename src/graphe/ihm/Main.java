@@ -9,8 +9,8 @@ import graphe.representations.*;
 
 
 public class Main {
-    public static final String GRAPHES_REP = "autres/grph";
-    public static final String REPONSES_REP = "autres/rep";
+    public static final String GRAPHES_REP = "graphes";
+    public static final String REPONSES_REP = "reponses";
 	private static final IGraphe[] prototypes = {
 			new GrapheLArcs(),
             new GrapheLAdj(),
