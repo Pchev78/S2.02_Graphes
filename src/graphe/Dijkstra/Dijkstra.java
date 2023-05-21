@@ -54,7 +54,7 @@ public class Dijkstra{
 
     /**
      * Implémente l'algorithme de Dijkstra permettant de retrouver les plus courts chemin permettant d'aller 
-     * d'un sommet source à un autredans un graphe cible
+     * d'un sommet source à un autre dans un graphe cible
      * @param g graphe cible de Dijkstra
 	 * @param source sommet de départ
 	 * @param dist dictionnaire répertoriant pour chaque sommet, la plus courte distance entre ce dernier et la source
