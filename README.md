@@ -7,7 +7,7 @@ Liste des membres de l'équipe :
 
 Nous avons codé les 4 classes demandées : GrapheLARcs, GrapheLAdj, GrapheMMAdj et GrapheHHAdj.
 
-Dijkstra passe les tests fournis avec ces quatre classes. Plus précisément, sans prendre trop de temps, pour :
+Dijkstra passe les tests fournis avec ces quatre classes. Plus précisément, sans prendre trop de temps, pour les grapes du type :
   
   - Dorogovtsev-Mendes :
     - avec GrapheLArcs les tests sont passés jusqu'à des graphes de 1000 sommets
