@@ -97,7 +97,4 @@ class IGrapheTest {
 		for (IGraphe g : graphes)
 			petiteImporation(g, "graphes/orig/g-10-1.txt");
 	}
-
-
-
 }
