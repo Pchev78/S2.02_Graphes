@@ -6,7 +6,6 @@ package graphe.representations;
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import graphe.core.Arc;
@@ -106,7 +105,7 @@ public class GrapheLArcs implements graphe.core.IGraphe {
 	 */
 	@Override
 	public boolean contientArc(String src, String dest) {
-		if (contientSommet(src)) {
+		if (contientSommet(src) && contientSommet(dest)) {
 			return getSucc(src).contains(dest);
 		}
 		return false;
@@ -118,7 +117,7 @@ public class GrapheLArcs implements graphe.core.IGraphe {
 	 */
 	@Override
 	public void ajouterSommet(String noeud) {
-		if (!contientSommet(noeud)) {
+		if (!contientSommet(noeud) && noeud != "") {
 			arcs.add(new Arc(noeud));
 		}
 	}
@@ -191,5 +190,4 @@ public class GrapheLArcs implements graphe.core.IGraphe {
 	public String toString() {
 		return toAString();
 	}
-	
 }
