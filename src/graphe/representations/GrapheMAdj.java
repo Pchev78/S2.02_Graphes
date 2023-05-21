@@ -1,4 +1,4 @@
-	package graphe.representations;
+package graphe.representations;
 
 /**
  * Classe représentant un graphe sous forme d'une matrice d'adjacence
@@ -42,11 +42,7 @@ public class GrapheMAdj implements graphe.core.IGraphe{
 	 */
 	@Override
 	public List<String> getSommets() {
-		List<String> sommets = new ArrayList<String>();
-		for (String sommet : indices.keySet()) {
-			sommets.add(sommet);
-		}
-		return sommets;
+		return new ArrayList<String>(indices.keySet());
 	}
 
 	/**
@@ -96,7 +92,7 @@ public class GrapheMAdj implements graphe.core.IGraphe{
 	 */
 	@Override
 	public boolean contientSommet(String sommet) {
-		return getSommets().contains(sommet);
+		return indices.containsKey(sommet);
 	}
 
 	/**
@@ -107,7 +103,7 @@ public class GrapheMAdj implements graphe.core.IGraphe{
 	 */
 	@Override
 	public boolean contientArc(String src, String dest) {
-		if (contientSommet(src)) {
+		if (contientSommet(src) && contientSommet(dest)) {
 			return getSucc(src).contains(dest);
 		}
 		return false;
@@ -118,7 +114,7 @@ public class GrapheMAdj implements graphe.core.IGraphe{
 	 * @return le nombre de sommets
 	 */
 	private int nbSommets() {
-		return getSommets().size();
+		return indices.size();
 	}
 
 	/**
@@ -262,37 +258,3 @@ public class GrapheMAdj implements graphe.core.IGraphe{
 		return toAString();
 	}
 }
-	
-//	public String toString() {
-//		String s = "";
-//		boolean premier = true;
-//		
-//		List<String> sommetsTries = new ArrayList<String>(getSommets());
-//		Collections.sort(sommetsTries);
-//		
-//		for(String src : sommetsTries) {
-//			List<String> succTries = new ArrayList<String>(getSucc(src));
-//			Collections.sort(succTries);
-//			
-//			for (String dst : succTries) {
-//				if (premier) {
-//					s += src + "-" + dst + "(" + getValuation(src, dst) + ")";
-//					premier = false;
-//				}
-//				else {
-//					s += ", " + src + "-" + dst + "(" + getValuation(src, dst) + ")";
-//				}
-//			}
-//			if (succTries.isEmpty()) {
-//				if (premier) {
-//					s += src + ":";
-//					premier = false;
-//				}
-//				else {
-//					s += ", " + src + ":";
-//				}
-//			}
-//		}
-//		return s;
-//	}
-//}
