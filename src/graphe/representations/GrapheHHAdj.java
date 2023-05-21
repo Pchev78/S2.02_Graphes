@@ -40,11 +40,7 @@ public class GrapheHHAdj implements graphe.core.IGraphe{
 	 */
 	@Override
 	public List<String> getSommets() {
-		List<String> sommets = new ArrayList<String>();
-		for (String sommet : hhadj.keySet()) {
-			sommets.add(sommet);
-		}
-		return sommets;
+		return new ArrayList<String>(hhadj.keySet());
 	}
 
 	/**
@@ -54,11 +50,7 @@ public class GrapheHHAdj implements graphe.core.IGraphe{
 	 */
 	@Override
 	public List<String> getSucc(String sommet) {
-		List<String> successeurs = new ArrayList<String>();
-		for (String succ : hhadj.get(sommet).keySet()) {
-			successeurs.add(succ);
-		}
-		return successeurs;
+		return new ArrayList<String>(hhadj.get(sommet).keySet());
 	}
 
 	/**
@@ -84,7 +76,7 @@ public class GrapheHHAdj implements graphe.core.IGraphe{
 	 */
 	@Override
 	public boolean contientSommet(String sommet) {
-		return getSommets().contains(sommet);
+		return hhadj.containsKey(sommet);
 	}
 
 	/**
@@ -95,8 +87,8 @@ public class GrapheHHAdj implements graphe.core.IGraphe{
 	 */
 	@Override
 	public boolean contientArc(String src, String dest) {
-		if (contientSommet(src)) {
-			return getSucc(src).contains(dest);
+		if (contientSommet(src) && contientSommet(dest)) {
+			return hhadj.get(src).containsKey(dest);
 		}
 		return false;
 	}
@@ -174,39 +166,3 @@ public class GrapheHHAdj implements graphe.core.IGraphe{
 		return toAString();
 	}
 }
-	
-//	public String toString() {
-//		List<String> sommetsTries = new ArrayList<String>(getSommets());
-//		Collections.sort(sommetsTries);
-//		
-//		boolean premier = true;
-//		String s = "";
-//		
-//		for (String sommet: sommetsTries) {
-//			List <String> destTries = new ArrayList<String>(getSucc(sommet));
-//			Collections.sort(destTries);
-//			
-//			for (String dest : destTries) {
-//				if (premier) {
-//					s += sommet + "-" + dest + "(" + getValuation(sommet, dest) + ")";
-//					premier = false;
-//				}
-//				else {
-//					s += ", " + sommet + "-" + dest + "(" + getValuation(sommet, dest) + ")";
-//				}
-//			}
-//			
-//			if (destTries.isEmpty()) {
-//				if (premier) {
-//					s += sommet + ":";
-//					premier = false;
-//				}
-//				else {
-//					s += ", " + sommet + ":";
-//				}
-//			}
-//			
-//		}
-//		return s;
-//	}
-//}
