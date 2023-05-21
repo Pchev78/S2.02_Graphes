@@ -43,11 +43,7 @@ public class GrapheLAdj implements graphe.core.IGraphe {
 	 */
 	@Override
 	public List<String> getSommets() {
-		List<String> sommets = new ArrayList<String>();
-		for (String sommet : ladj.keySet()){
-			sommets.add(sommet);
-		}
-		return sommets;
+		return new ArrayList<String>(ladj.keySet());
 	}
 
 	/**
@@ -89,7 +85,7 @@ public class GrapheLAdj implements graphe.core.IGraphe {
 	 */
 	@Override
 	public boolean contientSommet(String sommet) {
-		return getSommets().contains(sommet);
+		return ladj.containsKey(sommet);
 	}
 
 	/**
@@ -100,7 +96,7 @@ public class GrapheLAdj implements graphe.core.IGraphe {
 	 */
 	@Override
 	public boolean contientArc(String src, String dest) {
-		if (contientSommet(src)) {
+		if (contientSommet(src) && contientSommet(dest)) {
 			return getSucc(src).contains(dest);
 		}
 		return false;
@@ -184,40 +180,3 @@ public class GrapheLAdj implements graphe.core.IGraphe {
 		return toAString();
 	}
 }
-	
-//	public String toString() {
-//		List <String> sommetsTries= new ArrayList<String>(ladj.keySet());
-//		Collections.sort(sommetsTries);
-//		
-//		boolean premier = true;
-//		String s = "";
-//		
-//		for (String sommet: sommetsTries) {
-//			List <Arc> arcTries = new ArrayList<Arc>(ladj.get(sommet));
-//			Collections.sort(arcTries);
-//			
-//			for (Arc arc: arcTries) {
-//				if (premier) {
-//					s += arc.toString();
-//					premier = false;
-//				}
-//				else {
-//					s += ", " + arc.toString(); 
-//				}
-//			}
-//			
-//			if(arcTries.isEmpty()) {
-//				if (premier) {
-//					s += "sommet" + ":";
-//					premier = false;
-//				}
-//				else{
-//					s += ", " + sommet + ":";
-//				}
-//			}
-//			
-//		}
-//		return s;
-//	}
-//	
-//}
